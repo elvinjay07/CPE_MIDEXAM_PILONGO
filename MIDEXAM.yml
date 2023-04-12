@@ -1,0 +1,18 @@
+---
+- host: all
+  become: true
+  pre_tasks:
+
+  - name: Update CentOS servers
+    dnf:
+      update_cache: yes
+    changed_when: false
+    when: ansible_distribution == "CentOS"
+
+  - name: Update Ubuntu servers
+    apt:
+      update_cache: yes
+    changed_when: false
+    when: ansible_distribution == "Ubuntu"
+
+
